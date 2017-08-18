@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>A Simple MEAN Application</title>
+
+    <style>
+
+        #tableCard{
+            padding: 50px;
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="./appConfig.js"></script>
+    <script src="controllers/userController.js"></script>
+</head>
+<body>
+
+<div class="w3-container w3-padding-32 w3-display-topmiddle">
+    <div class="w3-card" id="tableCard" ng-controller="userCntrl">
+
+        <h1>SIMPLE MEAN APP</h1>
+
+        <input id="user" class="w3-input" placeholder="Filter Names" ng-model="search.name">
+        <br/>
+        <h4 class="w3-center">Search Criteria ... <b>{{search.name}}</b></h4>
+        <br/><br/>
+        <table class="w3-table-all">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Password</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td><input type="text" class="w3-input" ng-model="user.name" required></td>
+                <td><input type="number" class="w3-input" ng-model="user.age" required></td>
+                <td><input type="text" class="w3-input" ng-model="user.password" required></td>
+                <td><input type="button" value="Add Contact" class="w3-btn w3-blue" ng-click="add()"></td>
+            </tr>
+            <tr ng-repeat="user in userList | filter : search ">
+                <td>{{user.name}}</td>
+                <td>{{user.age}}</td>
+                <td>{{user.password}}</td>
+                <td><input type="button" class="w3-btn w3-red" value="Remove" ng-click="remove(user._id)"></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
